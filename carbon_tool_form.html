@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head lang="en" xml:lang="en">
+		
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>LifeWeb: Carbon Calculator Form</title>
+
+		<link href="stylesheets/lifeweb.css" media="screen" rel="stylesheet" type="text/css" />
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>	
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRSURUFOZ4yOQnOh9JxRWzUgMblyxBR0vlLKZ3J8rNS9WphAhkipv2c_nw" type="text/javascript"></script>		
+		<script src="javascript/utils/underscore-min.js" type="text/javascript"></script>
+		<script src="javascript/utils/jquery.json-2.2.js" type="text/javascript"></script>
+		<script src="javascript/utils/PolylineEncoder.js" type="text/javascript"></script>
+		<script src="javascript/markers/PPE_Infowindow_v2.js" type="text/javascript"></script>
+		<script src=" javascript/jquery.number_format.js" type="text/javascript"></script>	
+		<script src="javascript/calculator.js" type="text/javascript"></script>
+	
+	</head>
+	
+	<body onload="initialize()" onunload="GUnload">	
+
+		<div class="map_carbon_form_container">
+			<div id="map"></div>
+			
+			<div id="map_tools">
+				<h3>Tools</h3>
+				<span><strong class="area"></strong> km<sup>2</sup> - <strong class="carbon"></strong> Tn C <img src="images/calculator/ajax-loader.gif" style="display:none" id="loader_image"/></span>
+				<div>
+					<a id="select" href="javascript: void stopEditing()"></a>
+					<a id="draw" href="javascript: void startShape()"></a>
+					<a id="done" class="disabled" href="javascript: void showModal()"></a>
+				</div>
+			</div>
+			
+			<div id="geocoder">
+				<a id="zoom_in" href="#"></a>
+				<a id="zoom_out" href="#"></a>
+				<form action="#" onsubmit="showAddress(this.address.value); return false">
+		        <input type="text" size="30" name="address" value="Search by city, area, ..." id="search_text" />
+		        <input type="submit" value="" />
+		    </form>
+			</div>
+			
+			
+			<div class="filterButtons" >
+				<div class="layers_overlay" style="display:block; top:15px; right:10px">
+					<div class="unclicked">
+						<a href ="#">										
+						<div class="left"></div>
+						<div class="center">
+							<p>layers overlay</p>
+						</div>
+						<div class="right"></div>
+						</a>
+					</div>
+					<div class="list">
+						<div class="head"></div>
+						<div class="content">
+							<ul>
+								<li class="checked"><a href="#" id="protected_layer"></a><p>Protected Areas</p></li>
+								<li class="checked"><a href="#" id="carbon_layer"></a><p>Carbon</p></li>
+							</ul>
+						</div>
+						<div class="bottom"></div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="map_tooltip" id="not_found">
+				<p>Ops! We couldn’t find this location</p>
+			</div>
+			
+			<div class="big_loader">
+				<img src="images/calculator/ajax-loader-big.gif" />
+			</div>
+			
+			<div class="modal"></div>
+			<div class="modal_window">
+				<div class="image">
+					<img src="" />
+					<span class="shadow"></span>
+				</div>
+				<div class="text">
+					<p class="calculating">The area stores an estimated <br/><strong class="carbon">12,314,890,000</strong><br/> tonnes of carbon</p>
+					<p class="bio"><strong>12</strong>% of the area falls within Key Biodiversity Areas</p>
+				</div>
+				<a href="javascript:void firstState()" class="another">SELECT ANOTHER</a>
+				<a href="http://carbonatlasdemo.unep-wcmc.org/Interactive/CarbonCalculatorNotes" class="get_more">get more information about the Carbon and Biodiversity layers</a>
+
+				<p class="bottom">Do you work in this area of the world and are looking for project funding to secure this carbon for the future? Go to <a href="http://www.cbd.int/lifeweb/" target="_blank">LifeWeb</a> to express your interest</p>
+			</div>
+			<span class="map_shadow"></span>
+		</div>
+		<p class="madeby">map developed by <a href="http://www.unep-wcmc.org/" target="_blank">UNEP-WCMC</a> and <a href="http://www.vizzuality.com" target="_blank">vizzuality</a></p>
+	</body>
+	
+</html>
